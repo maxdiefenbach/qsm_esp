@@ -10,35 +10,23 @@
 %%
 %% Date created: February 18, 2019
 
-function [x, y] = esp_shell(ref, img)
-    FOV = size(ref);
-    refF = ftn(ref);
-    imgF = ftn(img);
-    refF_squared = abs(refF) .^ 2;
-    errormap = abs(imgF - refF) .^ 2;
+function [x, f, y] = esp_shell(refF2, errormapF2)
+    FOV = size(refF2);
 
-    xbase = linspace(-FOV(1)/2, FOV(1)/2 - 1, FOV(1));
-    ybase = linspace(-FOV(2)/2, FOV(2)/2 - 1, FOV(2));
-    zbase = linspace(-FOV(3)/2, FOV(3)/2 - 1, FOV(3));
-    [xm, ym, zm] = ndgrid(xbase, ybase, zbase);
+    [xm, ym, zm] = get_grid(FOV);
 
-    R = sqrt(xm .^ 2 + ym .^ 2 + zm .^ 2);
+    R = sqrt(xm.^2 + ym.^2 + zm.^2);
 
     radii = 1:(max(FOV) / 2) + 1;
 
-    error1 = zeros(length(radii), 1);
-    error2 = zeros(length(radii), 1);
+    f = zeros(length(radii), 1);
+    y = zeros(length(radii), 1);
 
     for i = radii
         mask = ((i-1) <= R) & (R < i);
-        tmp_errormap = errormap .* mask;
-        tmp_refF_squared = refF_squared .* mask;
-
-        error1(i) = sum(tmp_errormap(:));
-        error2(i) = sum(tmp_refF_squared(:));
+        f(i) = sum(errormapF2(mask));
+        y(i) = sum(refF2(mask));
     end
 
     x = radii;
-    y = sqrt(error1 ./ error2);
-    y = y(:).';
 end
