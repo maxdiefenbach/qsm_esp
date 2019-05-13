@@ -1,4 +1,4 @@
-#+TITLE: README
+#+TITLE: README qsm_esp
 #+DATE: <2019-04-28 Sun>
 #+AUTHOR: Maximilian N. Diefenbach
 #+EMAIL: maximilian.diefenbach@tum.de
@@ -12,4 +12,44 @@
 #+EXCLUDE_TAGS: noexport
 #+CREATOR: Emacs 26.1 (Org mode 9.1.14)
 
-qsm_esp
+
+* Description
+
+Code used in
+
+/Diefenbach, M. N., Böhm, C., Meineke, J., Liu, C., & Karampinos, D. C., One-dimensional k-space metrics on cone surfaces for quantitative susceptibility mapping, In , Proceedings 27. Annual Meeting International Society for Magnetic Resonance in Medicine (pp. 0322) (2019). Montreal, Canada/
+
+https://cds.ismrm.org/protected/19MPresentations/abstracts/0322.html
+
+#+BEGIN_SRC bibtex
+                    @inproceedings{Diefenbach_ISMRM2019_0322,
+                      author =       {Maximilian N. Diefenbach and Christof Böhm and Jakob
+                    Meineke and Chunlei Liu and Dimitrios C. Karampinos},
+                      title =        {{One-Dimensional k-Space Metrics on Cone Surfaces
+                    for Quantitative Susceptibility Mapping}},
+                      booktitle =    {Proceedings 27. Annual Meeting International Society
+                    for Magnetic Resonance in Medicine},
+                      year =         2019,
+                      volume =       27,
+                      pages =        0322,
+                      address =      {Montreal, Canada},
+                      publisher =    {\url{https://index.mirasmart.com/ISMRM2019/PDFfiles/0322.html}},
+                    }
+#+END_SRC
+
+* Content
+- code/
+  - matlab/
+    matlab code to compute the metrics and fuse susceptibility maps
+  - python/
+    initial prototype
+
+- data/
+  2016 QSM reconstruction + numerical brain phantom
+
+- scripts/
+  scripts to run the code on the datasets and create figures
+
+* Contribution
+There might still be some functions missing for exploratory visualization.
+Please open an issue and we will add it.
